@@ -1,0 +1,1 @@
+# ghost-touch-guard
