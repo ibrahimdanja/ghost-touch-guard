@@ -75,6 +75,7 @@ public class MainActivity extends Activity {
         root.addView(btn("Stop lock bubble", v -> stopService(new Intent(this, BubbleService.class))));
         root.addView(btn("Start touch watcher", v -> startSvc(OverlayService.class)));
         root.addView(btn("Stop touch watcher", v -> stopService(new Intent(this, OverlayService.class))));
+        root.addView(btn("Open ghost map (heatmap)", v -> startActivity(new Intent(this, GhostMapActivity.class))));
 
         info = new TextView(this);
         info.setTextSize(14);
