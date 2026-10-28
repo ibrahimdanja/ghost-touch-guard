@@ -20,7 +20,7 @@ public class MainActivity extends Activity {
     private final Runnable refresh = new Runnable() {
         @Override
         public void run() {
-            info.setText("Touches seen: " + LogStore.count + "\n\n" + LogStore.snapshot());
+            info.setText("Touches seen: " + LogStore.count + "   Bursts: " + LogStore.bursts + "\n\n" + LogStore.snapshot());
             handler.postDelayed(this, 500);
         }
     };

@@ -43,6 +43,7 @@ public class OverlayService extends Service {
                 .build();
         startForeground(1, n);
 
+        LogStore.csv = new java.io.File(getExternalFilesDir(null), "touches.csv");
         wm = (WindowManager) getSystemService(WINDOW_SERVICE);
         dot = new View(this);
         int type = Build.VERSION.SDK_INT >= 26
@@ -58,8 +59,7 @@ public class OverlayService extends Service {
 
         dot.setOnTouchListener((v, e) -> {
             if (e.getActionMasked() == MotionEvent.ACTION_OUTSIDE) {
-                LogStore.count++;
-                LogStore.add(fmt.format(new Date()) + "  x=" + (int) e.getRawX() + " y=" + (int) e.getRawY());
+                LogStore.touch(fmt.format(new Date()), (int) e.getRawX(), (int) e.getRawY());
             }
             return false;
         });
