@@ -10,5 +10,6 @@
             </intent-filter>
         </activity>
         <service android:name=".OverlayService" android:exported="false" />
+        <service android:name=".BubbleService" android:exported="false" />
     </application>
 </manifest>

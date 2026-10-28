@@ -8,7 +8,7 @@ android {
         applicationId 'com.elan.ghosttouchguard'
         minSdk 24
         targetSdk 29
-        versionCode 3
+        versionCode 4
         versionName '0.1'
     }
     compileOptions {
