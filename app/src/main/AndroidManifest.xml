@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <application android:label="Ghost Touch Guard">
         <activity android:name=".MainActivity" android:exported="true">
             <intent-filter>
@@ -13,5 +15,10 @@
         <service android:name=".OverlayService" android:exported="false" />
         <service android:name=".BubbleService" android:exported="false" />
         <service android:name=".ZoneService" android:exported="false" />
+            <receiver android:name=".BootReceiver" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
     </application>
 </manifest>

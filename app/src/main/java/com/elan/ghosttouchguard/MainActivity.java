@@ -79,6 +79,9 @@ public class MainActivity extends Activity {
         root.addView(btn("Start zone guard (invisible)", v -> { getSharedPreferences("cfg", MODE_PRIVATE).edit().putBoolean("show", false).apply(); startSvc(ZoneService.class); }));
         root.addView(btn("Show zones (red tint, for testing)", v -> { stopService(new Intent(this, ZoneService.class)); getSharedPreferences("cfg", MODE_PRIVATE).edit().putBoolean("show", true).apply(); startSvc(ZoneService.class); }));
         root.addView(btn("Stop zone guard", v -> stopService(new Intent(this, ZoneService.class))));
+        root.addView(btn("Start protection (zones + bubble + auto-start)", v -> { getSharedPreferences("cfg", MODE_PRIVATE).edit().putBoolean("show", false).putBoolean("autostart", true).apply(); stopService(new Intent(this, ZoneService.class)); startSvc(ZoneService.class); startSvc(BubbleService.class); }));
+        root.addView(btn("Stop protection", v -> { getSharedPreferences("cfg", MODE_PRIVATE).edit().putBoolean("autostart", false).apply(); stopService(new Intent(this, ZoneService.class)); stopService(new Intent(this, BubbleService.class)); }));
+        root.addView(btn("Battery: allow running in background", v -> startActivity(new Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS))));
 
         info = new TextView(this);
         info.setTextSize(14);

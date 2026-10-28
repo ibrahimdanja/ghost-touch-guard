@@ -4,12 +4,20 @@ plugins {
 android {
     namespace 'com.elan.ghosttouchguard'
     compileSdk 34
+    signingConfigs {
+        debug {
+            storeFile file('ghost.keystore')
+            storePassword 'ghosttouch'
+            keyAlias 'ghost'
+            keyPassword 'ghosttouch'
+        }
+    }
     defaultConfig {
         applicationId 'com.elan.ghosttouchguard'
         minSdk 24
         targetSdk 29
-        versionCode 6
-        versionName '0.1'
+        versionCode 7
+        versionName '0.7'
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
