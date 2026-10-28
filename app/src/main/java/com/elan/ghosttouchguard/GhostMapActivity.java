@@ -31,7 +31,7 @@ public class GhostMapActivity extends Activity {
     protected void onCreate(Bundle b) {
         super.onCreate(b);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        csv = new File(getExternalFilesDir(null), "ghostmap.csv");
+        csv = new File(getExternalFilesDir(null), "ghostmap2.csv");
 
         LinearLayout root = new LinearLayout(this);
         root.setOrientation(LinearLayout.VERTICAL);
@@ -86,7 +86,7 @@ public class GhostMapActivity extends Activity {
             total++;
             if (fingers > maxFingers) maxFingers = fingers;
             lastTime = fmt.format(new Date());
-            append(x, y, nx, ny, fingers);
+            int[] loc = new int[2]; heat.getLocationOnScreen(loc); append(x, y, nx, ny, fingers, x + loc[0], y + loc[1]);
             updateSummary();
         });
 
@@ -111,14 +111,14 @@ public class GhostMapActivity extends Activity {
         } catch (Exception ignored) {}
     }
 
-    private void append(int x, int y, float nx, float ny, int fingers) {
+    private void append(int x, int y, float nx, float ny, int fingers, int sx, int sy) {
         try {
             boolean fresh = !csv.exists();
             FileWriter fw = new FileWriter(csv, true);
-            if (fresh) fw.write("epoch_ms,time,x,y,nx,ny,fingers\n");
+            if (fresh) fw.write("epoch_ms,time,x,y,nx,ny,fingers,sx,sy\n");
             fw.write(System.currentTimeMillis() + "," + lastTime + "," + x + "," + y + ","
                     + String.format(Locale.US, "%.3f", nx) + ","
-                    + String.format(Locale.US, "%.3f", ny) + "," + fingers + "\n");
+                    + String.format(Locale.US, "%.3f", ny) + "," + fingers + "," + sx + "," + sy + "\n");
             fw.close();
         } catch (Exception ignored) {}
     }

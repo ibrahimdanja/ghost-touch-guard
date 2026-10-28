@@ -76,6 +76,9 @@ public class MainActivity extends Activity {
         root.addView(btn("Start touch watcher", v -> startSvc(OverlayService.class)));
         root.addView(btn("Stop touch watcher", v -> stopService(new Intent(this, OverlayService.class))));
         root.addView(btn("Open ghost map (heatmap)", v -> startActivity(new Intent(this, GhostMapActivity.class))));
+        root.addView(btn("Start zone guard (invisible)", v -> { getSharedPreferences("cfg", MODE_PRIVATE).edit().putBoolean("show", false).apply(); startSvc(ZoneService.class); }));
+        root.addView(btn("Show zones (red tint, for testing)", v -> { stopService(new Intent(this, ZoneService.class)); getSharedPreferences("cfg", MODE_PRIVATE).edit().putBoolean("show", true).apply(); startSvc(ZoneService.class); }));
+        root.addView(btn("Stop zone guard", v -> stopService(new Intent(this, ZoneService.class))));
 
         info = new TextView(this);
         info.setTextSize(14);

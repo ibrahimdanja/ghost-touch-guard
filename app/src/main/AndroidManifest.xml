@@ -12,5 +12,6 @@
         <activity android:name=".GhostMapActivity" android:exported="false" />
         <service android:name=".OverlayService" android:exported="false" />
         <service android:name=".BubbleService" android:exported="false" />
+        <service android:name=".ZoneService" android:exported="false" />
     </application>
 </manifest>
